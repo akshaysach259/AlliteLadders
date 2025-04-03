@@ -1,0 +1,4 @@
+services:
+#    project_cms.example:
+#        class: ProjectCmsBundle\Example
+#        arguments: ["@service_id", "plain_value", "%parameter%"]

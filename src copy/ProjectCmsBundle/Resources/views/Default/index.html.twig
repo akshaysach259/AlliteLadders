@@ -1,0 +1,330 @@
+{% extends 'ProjectCmsBundle::layout.html.twig' %}
+ {% block body %}
+
+<style>
+img {max-width:100%;}
+</style>
+
+    <!-- Organic All Starts-->
+            <section class="short-about sec-space-bottom">
+
+                <div class="pattern"> 
+                    <img alt="" src="{{ asset('bundles/projectcms/img/icons/white-pattern.png') }}" />
+                </div>
+                <div class="section-icon"> 
+                    <img alt="" src="{{ asset('bundles/projectcms/img/logo/logo-2.png') }}" />
+                </div>
+                <div class="container rel-div">
+                    <div class="title-wrap pt-15"> 
+                        <i class="fa fa-star-o"></i><i class="fa fa-star-o"></i><i class="fa fa-star-o"></i>  
+                        <span class="light-font">{% if homePage[0].pageTitle1 is defined %}{{homePage[0].pageTitle1}}{% endif %}</span>
+                        <i class="fa fa-star-o"></i><i class="fa fa-star-o"></i><i class="fa fa-star-o"></i>  
+
+                        <p>{% if homePage[0].pageTitleDesc1 is defined %}{{homePage[0].pageTitleDesc1}}{% endif %}</p>
+                    </div>
+
+                    <div class="about-wrap"> 
+                        <img class="logo-img" alt="" src="{{ asset('bundles/projectcms/img/extra/sign-1.png') }}" />
+                        <h4 class=""> <strong>I.P.</strong> <span class="light-font"> MATTA </span> </h4>
+                        <h5 class="clr-txt sub-title-sm">M.D.</h5>
+                      
+                    </div>
+                </div>
+
+            </section>
+            <!-- / Organic All Ends -->       
+
+            <!-- Naturix Goods Starts-->
+            <section class="naturix-goods light-bg">
+                <div class="container"> 
+                    <div class="title-wrap">
+                        <h2 class="section-title"> <span class="light-font">Our </span> <strong>Products<img src="{{ asset('bundles/projectcms/img/icons/logo-icon.png') }}" alt="" /></strong> </h2>
+                    </div>
+
+                  {#  <div class="tabs-box text-center">
+                        <ul class="theme-tabs small">
+                            <li class=""><a href="index.htmlnaturix-tab-1" data-toggle="tab"> <span class="light-font">all </span> <strong>goods </strong> </a></li>                                
+                            <li class="active"><a href="index.htmlnaturix-tab-2" data-toggle="tab"> <span class="light-font">organic </span> <strong>vegetables </strong> </a></li>                               
+                            <li class=""><a href="index.htmlnaturix-tab-3" data-toggle="tab"> <span class="light-font">organic </span> <strong>fruits </strong> </a></li>
+                            <li class=""><a href="index.htmlnaturix-tab-4" data-toggle="tab"> <span class="light-font">organic </span> <strong>tea </strong> </a></li>
+                            <li class=""><a href="index.htmlnaturix-tab-5" data-toggle="tab"> <span class="light-font">all </span> <strong>bread </strong> </a></li>
+                            <li class=""><a href="index.htmlnaturix-tab-6" data-toggle="tab"> <span class="light-font">organic </span> <strong>juices </strong> </a></li>
+                        </ul>
+                    </div>#}
+
+
+
+                    <div class="tab-content organic-content row"> 
+                        <div id="naturix-tab-1" class="tab-pane fade active in"> 
+                            <div class="naturix-slider-1 dots-1"> 
+
+
+{% if productCat is defined and productCat|length>0 %}
+        <div class="item"> 
+{% for queryProductsResult in productCat %}
+
+{% set imageType = 'jpeg' %}
+{% set imageTypeArry = queryProductsResult.image.contentType|split('/') %}
+{% set imageType = imageTypeArry[1] %}
+
+            <div class="product-box"> 
+                <div class="product-media"> 
+                {% if imageType=='x-shockwave-flash' %}
+    <object classid="clsid:D27CDB6E-AE6D-11cf-96B8-444553540000" codebase="http://download.macromedia.com/pub/shockwave/cabs/flash/swflash.cab#version=7,0,19,0" width="300" height="330">
+  <param name="movie" value="/web/uploads/media/default/0001/01/{{queryProductsResult.image.providerReference}}" />
+  <param name="quality" value="high" />
+  <embed src="/web/uploads/media/default/0001/01/{{queryProductsResult.image.providerReference}}" quality="high" pluginspage="http://www.macromedia.com/go/getflashplayer" type="application/x-shockwave-flash" width="300" height="330"></embed>
+</object>
+  				       {% else %}
+                    <img class="prod-img" alt="" src="/web/uploads/media/default/0001/01/{{queryProductsResult.image.providerReference}}" />
+                    {% endif %}
+                   {# <img class="shape" alt="" src="{{ asset('bundles/projectcms/img/icons/shap-small.png') }}" />  #}
+                 </div>                                           
+                <div class="product-caption"> 
+                    <h3 class="product-title">
+              <a href="{{ path('_page_article_detail', { 'urlAlias':queryProductsResult.pageUrl }) }}"> {#<span class="light-font"> organic </span>#}  <strong>{{queryProductsResult.pageTitle}}</strong></a>
+                    </h3>
+		<div class="price"> 
+		<strong class="clr-txt"><a href="{{ path('_page_article_detail', { 'urlAlias':queryProductsResult.pageUrl }) }}" style="color:#7fba00">View More</a></strong>
+		</div>
+                </div>
+            </div>
+	{% if loop.index%2==0 and not loop.last %}
+        </div><div class="item"> 
+       {% endif %}
+
+	{% endfor %}
+         </div>
+	{% endif %}
+
+
+ 
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+            </section>
+            <!-- / Naturix Goods Ends -->
+
+            <!-- Naturix Quality Starts-->
+            <section class="naturix-quality sec-space-bottom">
+
+                <div class="container"> 
+                    <div class="title-wrap pt-15">
+                        <h2 class="section-title pt-15"> <span class="light-font">Helping you reach</span> <strong> Difficult height Safely </strong> </h2>                        
+                    </div>
+                    <div class="food-quality block-inline">
+{% if homePage[0].image is defined %}
+
+{% set imageType = 'jpeg' %}
+{% set imageTypeArry = homePage[0].image.contentType|split('/') %}
+{% set imageType = imageTypeArry[1] %}
+
+{% endif %}
+
+                   {% if homePage[0].image is defined %}
+                        <div class="col-md-6 pt-50"> 
+                             <div class="center"> 
+                               
+                                
+   <div  style="float:right;margin-right:20px;"> 
+    <img alt="" src="/web/uploads/media/default/0001/01/7.gif" >
+    </div>
+    
+    
+           <!-- <div style="float:right;margin-right:10px;"> 
+      <img alt="" src="/web/uploads/media/default/0001/01/ALUMINIUM-STRAIGHT-TOWER- LADDER.gif" width="300" height="300">
+
+                            {#<img alt="" src="/web/uploads/media/default/0001/01/thumb_{{homePage[0].image.id}}_default_td_600.{{imageType}}" width="540" height="100">#}
+                                </div>  -->                   
+                                
+                            </div>
+                        </div>
+{% endif %}
+
+                        <div class="col-md-6 pt-50"> 
+                            <div class="right"> 
+                                <div class="quality-img"> 
+                                    <img alt="" src="{{ asset('bundles/projectcms/img/icons/quality-4.png') }}" />
+                                </div>
+                                <div class="quality-caption"> 
+                                    <h2 class="title-1">{% if homePage[0].pageTitle2 is defined %}{{homePage[0].pageTitle2}}{% endif %}</h2>
+                                    <span class="divider-2"></span>
+                                    <p>{% if homePage[0].pageTitleDesc2 is defined %}{{homePage[0].pageTitleDesc2}}{% endif %}</p>
+                                     <p><a href="{% if homePage[0].pageUrl2 is defined %}{{homePage[0].pageUrl2}}{% endif %}" style="color:#7fba00;text-align:right">Read More</a></p>
+                                </div> 
+				
+                            </div>
+                            <div class="right"> 
+                                <div class="quality-img"> 
+                                    <img alt="" src="{{ asset('bundles/projectcms/img/icons/quality-5.png') }}" />
+                                </div>
+                                <div class="quality-caption"> 
+                                    <h2 class="title-1">{% if homePage[0].pageTitle3 is defined %}{{homePage[0].pageTitle3}}{% endif %}</h2>
+                                    <span class="divider-2"></span>
+                                    <p>{% if homePage[0].pageTitleDesc3 is defined %}{{homePage[0].pageTitleDesc3}}{% endif %}</p>
+<p><a href="{% if homePage[0].pageUrl3 is defined %}{{homePage[0].pageUrl3}}{% endif %}" style="color:#7fba00;text-align:right">Read More</a></p>
+                                </div> 
+                            </div>
+                            <div class="right"> 
+                                <div class="quality-img"> 
+                                    <img alt="" src="{{ asset('bundles/projectcms/img/icons/quality-6.png') }}" />
+                                </div>
+                                <div class="quality-caption"> 
+                                    <h2 class="title-1">{% if homePage[0].pageTitle4 is defined %}{{homePage[0].pageTitle4}}{% endif %}</h2>
+                                    <span class="divider-2"></span>
+                                    <p>{% if homePage[0].pageTitleDesc4 is defined %}{{homePage[0].pageTitleDesc4}}{% endif %}</p>
+<p><a href="{% if homePage[0].pageUrl4 is defined %}{{homePage[0].pageUrl4}}{% endif %}" style="color:#7fba00;text-align:right">Read More</a></p>
+                                </div> 
+                            </div>
+                        </div>
+                    </div>                    
+                </div>
+            </section>
+            <!-- Naturix Quality Starts-->
+
+            <div class="container"> <div class="divider-full-1"></div> </div>
+
+            <!-- Random Products Starts-->
+            <section >                
+                <div class="container"> 
+                     
+<div class="title-wrap">
+    <h2 class="section-title"> <span class="light-font">OUR</span> <strong>CLIENTS</strong> </h2>
+</div>
+
+<marquee behavior="scroll" direction="left" WIDTH="100%" HEIGHT="50%">
+{% if clientList is defined and clientList|length>0 %}
+{% for queryClientListResult in clientList %}
+
+{% set imageType = 'jpeg' %}
+{% set imageTypeArry = queryClientListResult.image.contentType|split('/') %}
+{% set imageType = imageTypeArry[1] %}
+<img style="margin-left:20px;" alt="" src="/web/uploads/media/default/0001/01/thumb_{{queryClientListResult.image.id}}_default_td_160.{{imageType}}" />
+{% endfor %}
+{% endif %}
+
+
+</marquee>
+
+                </div>
+            </section>
+            <div class="container"> <div class="divider-full-1"></div> </div>
+
+
+            <!-- Random Products Ends -->
+
+            <!-- Subscribe Newsletter Starts-->
+         <!--   <section class="subscribe-wrap sec-space light-bg">
+               
+                <div class="container"> 
+                    <div class="row"> 
+                        <div class="col-md-4"> 
+                            <h4 class="sub-title"> JOIN OUR NEWSLETTER </h4>
+                            <h2 class="fsz-35"> <span class="light-font">subscribe </span> <strong> newsletter</strong> </h2>
+                        </div>
+                        <div class="col-md-8"> 
+                            <form class="newsletter-form row">
+                                <div class="form-group col-sm-8">
+                                   <input class="form-control" placeholder="enter your email address" required=""  type="text">                                                                                
+                                </div>
+                                <div class="form-group col-sm-4">                                               
+                                   <button class="theme-btn btn-block" type="submit"> subscribe <i class="fa fa-long-arrow-right"></i> </button>                                       
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </section> -->
+            <!-- Subscribe Newsletter Ends -->
+
+            <!-- Testimonials Starts-->
+            <section class="">
+                <div class="container"> 
+                    <div class="testimonials">     
+                        <div id="testimonial-slider" class="testimonial-slider nav-1">
+{% if testimonialList is defined and testimonialList|length>0 %}
+{% for querytestimonialListResult in testimonialList %}
+ 
+{% set imageType = 'jpeg' %}
+{% set imageTypeArry = querytestimonialListResult.image.contentType|split('/') %}
+{% set imageType = imageTypeArry[1] %}
+
+                            <div class="item"> 
+                                <div class="testi-wrap"> 
+                                    <div class="testi-img"> 
+                                        <a href="index.html"> <img src="/web/uploads/media/default/0001/01/thumb_{{querytestimonialListResult.image.id}}_default_td_160.{{imageType}}" alt="" /> </a>
+                                    </div>
+                                    <div class="testi-caption"> 
+                                        <p> <i>“{{querytestimonialListResult.pageDescription|raw}}”</i> </p>
+                                        <a href="#"> <i class="fa fa-user clr-txt"></i> <strong> {{querytestimonialListResult.testimonialBy|raw}} </strong> </a>
+                                    </div>
+                                </div>
+                            </div>
+{% endfor %}
+{% endif %}
+
+
+                      </div>
+                    </div>
+                </div>
+            </section>
+            <!-- Testimonials Ends -->
+
+
+
+
+
+            <!-- Naturix Quality Starts-->
+            <section class="naturix-quality sec-space-bottom">
+
+                <div class="container"> 
+                    <div class="title-wrap pt-15">
+                        <h2 class="section-title pt-15"> <span class="light-font">Video/</span> <strong>Latest Blogs</strong> </h2>                        
+                    </div>
+                    <div class="food-quality block-inline">
+
+                   {% if queryVideo[0] is defined %}
+                        <div class="col-md-6 pt-50"> 
+                             <div class="center"> 
+                                <div> 
+                            <div class="video-box">
+    <iframe width="580" height="500" src="https://www.youtube.com/embed/9eDrULT0gEs"></iframe>
+</div>
+                                </div>
+                            </div>
+                        </div>
+{% endif %}
+
+                        <div class="col-md-6 pt-50"> 
+
+{% if queryNews is defined and queryNews|length>0 %}
+{% for queryqueryNewsResult in queryNews %}
+                            <div class="right"> 
+                                    <div class="quality-caption"> 
+                                    <h2 class="title-1">{% if queryqueryNewsResult.blogTitle is defined %}{{queryqueryNewsResult.blogTitle}}{% endif %}</h2>
+                                    <span class="divider-2"></span>
+                                    <p>{% if queryqueryNewsResult.pageDescription is defined %}{{queryqueryNewsResult.pageDescription|truncate(100)|raw}}{% endif %}</p>
+                                     <p><a href="{{ path('_page_blog_detail', { 'urlAlias':queryqueryNewsResult.pageUrl }) }}" style="color:#7fba00;text-align:right">Read More</a></p>
+                                </div> 
+				 </div>
+
+{% endfor %}
+{% endif %}
+
+
+                            
+                        </div>
+                    </div>                    
+                </div>
+            </section>
+            <!-- Naturix Quality Starts-->
+
+            <div class="container"> <div class="divider-full-1"></div> </div>
+
+    
+
+
+
+ {% endblock %}

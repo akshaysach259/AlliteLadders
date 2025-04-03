@@ -1,0 +1,553 @@
+<?php
+
+namespace ProjectCmsBundle\Entity;
+use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
+use Doctrine\ORM\Mapping as ORM;
+
+/**
+ * ProjectPage
+ *
+ * @ORM\Table(name="project_page")
+ * @ORM\Entity(repositoryClass="ProjectCmsBundle\Repository\MainPageRepository")
+ */
+class ProjectPage
+{
+    /**
+     * @var int
+     *
+     * @ORM\Column(name="id", type="integer")
+     * @ORM\Id
+     * @ORM\GeneratedValue(strategy="AUTO")
+     */
+    private $id;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="projectName", type="string", length=255)
+     */
+    private $projectName;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="pageUrl", type="string", length=255)
+     */
+    private $pageUrl;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="pageDescription", type="text",nullable=true)
+     */
+    private $pageDescription;
+
+    /**
+     * @var ProjectCmsBundle\Entity\ProjectMainPage
+     *
+     * @ORM\ManyToOne(targetEntity="ProjectCmsBundle\Entity\ProjectMainPage")
+     * @ORM\JoinColumns({
+     *   @ORM\JoinColumn(name="project_cat_id", referencedColumnName="id")
+     * })
+     */
+    private $projectcatId;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="metaTitle", type="string", length=255)
+     */
+    private $metaTitle;
+
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="metaDescription", type="string", length=255)
+     */
+    private $metaDescription;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="metaKeyword", type="string", length=255)
+     */
+    private $metaKeyword;
+
+    /**
+     * @var bool
+     *
+     * @ORM\Column(name="status", type="boolean", options={"default" = 0})
+     */
+    private $status;
+
+    /**
+     * @var int
+     *
+     * @ORM\Column(name="priority",nullable=true, type="integer",options={"default" = 0})
+     */
+    private $priority;
+      /**
+	* @ORM\ManyToOne(targetEntity="Application\Sonata\MediaBundle\Entity\Media")
+	*/
+    private $image;
+
+     /**
+	* @ORM\ManyToOne(targetEntity="Application\Sonata\MediaBundle\Entity\Media")
+	*/
+    private $firstimage;
+
+     /**
+	* @ORM\ManyToOne(targetEntity="Application\Sonata\MediaBundle\Entity\Media")
+	*/
+    private $secondimage;
+
+     /**
+	* @ORM\ManyToOne(targetEntity="Application\Sonata\MediaBundle\Entity\Media")
+	*/
+    private $thirdimage;
+
+     /**
+	* @ORM\ManyToOne(targetEntity="Application\Sonata\MediaBundle\Entity\Media")
+	*/
+    private $forthimage;
+
+     /**
+	* @ORM\ManyToOne(targetEntity="Application\Sonata\MediaBundle\Entity\Media")
+	*/
+    private $fifthimage;
+
+    /**
+     * @var \DateTime
+     *
+     * @ORM\Column(name="created", type="datetime")
+     */
+    private $created;
+
+    /**
+     * @var \DateTime
+     *
+     * @ORM\Column(name="updated", type="datetime")
+     */
+    private $updated;
+
+
+
+    /**
+     * Get id
+     *
+     * @return integer
+     */
+    public function getId()
+    {
+        return $this->id;
+    }
+
+    /**
+     * Set projectName
+     *
+     * @param string $projectName
+     *
+     * @return ProjectPage
+     */
+    public function setProjectName($projectName)
+    {
+        $this->projectName = $projectName;
+
+        return $this;
+    }
+
+    /**
+     * Get projectName
+     *
+     * @return string
+     */
+    public function getProjectName()
+    {
+        return $this->projectName;
+    }
+
+    /**
+     * Set pageUrl
+     *
+     * @param string $pageUrl
+     *
+     * @return ProjectPage
+     */
+    public function setPageUrl($pageUrl)
+    {
+        $this->pageUrl = $pageUrl;
+
+        return $this;
+    }
+
+    /**
+     * Get pageUrl
+     *
+     * @return string
+     */
+    public function getPageUrl()
+    {
+        return $this->pageUrl;
+    }
+
+    /**
+     * Set pageDescription
+     *
+     * @param string $pageDescription
+     *
+     * @return ProjectPage
+     */
+    public function setPageDescription($pageDescription)
+    {
+        $this->pageDescription = $pageDescription;
+
+        return $this;
+    }
+
+    /**
+     * Get pageDescription
+     *
+     * @return string
+     */
+    public function getPageDescription()
+    {
+        return $this->pageDescription;
+    }
+
+    /**
+     * Set metaTitle
+     *
+     * @param string $metaTitle
+     *
+     * @return ProjectPage
+     */
+    public function setMetaTitle($metaTitle)
+    {
+        $this->metaTitle = $metaTitle;
+
+        return $this;
+    }
+
+    /**
+     * Get metaTitle
+     *
+     * @return string
+     */
+    public function getMetaTitle()
+    {
+        return $this->metaTitle;
+    }
+
+    /**
+     * Set metaDescription
+     *
+     * @param string $metaDescription
+     *
+     * @return ProjectPage
+     */
+    public function setMetaDescription($metaDescription)
+    {
+        $this->metaDescription = $metaDescription;
+
+        return $this;
+    }
+
+    /**
+     * Get metaDescription
+     *
+     * @return string
+     */
+    public function getMetaDescription()
+    {
+        return $this->metaDescription;
+    }
+
+    /**
+     * Set metaKeyword
+     *
+     * @param string $metaKeyword
+     *
+     * @return ProjectPage
+     */
+    public function setMetaKeyword($metaKeyword)
+    {
+        $this->metaKeyword = $metaKeyword;
+
+        return $this;
+    }
+
+    /**
+     * Get metaKeyword
+     *
+     * @return string
+     */
+    public function getMetaKeyword()
+    {
+        return $this->metaKeyword;
+    }
+
+    /**
+     * Set status
+     *
+     * @param boolean $status
+     *
+     * @return ProjectPage
+     */
+    public function setStatus($status)
+    {
+        $this->status = $status;
+
+        return $this;
+    }
+
+    /**
+     * Get status
+     *
+     * @return boolean
+     */
+    public function getStatus()
+    {
+        return $this->status;
+    }
+
+    /**
+     * Set priority
+     *
+     * @param integer $priority
+     *
+     * @return ProjectPage
+     */
+    public function setPriority($priority)
+    {
+        $this->priority = $priority;
+
+        return $this;
+    }
+
+    /**
+     * Get priority
+     *
+     * @return integer
+     */
+    public function getPriority()
+    {
+        return $this->priority;
+    }
+
+    /**
+     * Set created
+     *
+     * @param \DateTime $created
+     *
+     * @return ProjectPage
+     */
+    public function setCreated($created)
+    {
+        $this->created = $created;
+
+        return $this;
+    }
+
+    /**
+     * Get created
+     *
+     * @return \DateTime
+     */
+    public function getCreated()
+    {
+        return $this->created;
+    }
+
+    /**
+     * Set updated
+     *
+     * @param \DateTime $updated
+     *
+     * @return ProjectPage
+     */
+    public function setUpdated($updated)
+    {
+        $this->updated = $updated;
+
+        return $this;
+    }
+
+    /**
+     * Get updated
+     *
+     * @return \DateTime
+     */
+    public function getUpdated()
+    {
+        return $this->updated;
+    }
+
+    /**
+     * Set projectcatId
+     *
+     * @param \ProjectCmsBundle\Entity\ProjectMainPage $projectcatId
+     *
+     * @return ProjectPage
+     */
+    public function setProjectcatId(\ProjectCmsBundle\Entity\ProjectMainPage $projectcatId = null)
+    {
+        $this->projectcatId = $projectcatId;
+
+        return $this;
+    }
+
+    /**
+     * Get projectcatId
+     *
+     * @return \ProjectCmsBundle\Entity\ProjectMainPage
+     */
+    public function getProjectcatId()
+    {
+        return $this->projectcatId;
+    }
+
+    /**
+     * Set image
+     *
+     * @param \Application\Sonata\MediaBundle\Entity\Media $image
+     *
+     * @return ProjectPage
+     */
+    public function setImage(\Application\Sonata\MediaBundle\Entity\Media $image = null)
+    {
+        $this->image = $image;
+
+        return $this;
+    }
+
+    /**
+     * Get image
+     *
+     * @return \Application\Sonata\MediaBundle\Entity\Media
+     */
+    public function getImage()
+    {
+        return $this->image;
+    }
+
+    /**
+     * Set firstimage
+     *
+     * @param \Application\Sonata\MediaBundle\Entity\Media $firstimage
+     *
+     * @return ProjectPage
+     */
+    public function setFirstimage(\Application\Sonata\MediaBundle\Entity\Media $firstimage = null)
+    {
+        $this->firstimage = $firstimage;
+
+        return $this;
+    }
+
+    /**
+     * Get firstimage
+     *
+     * @return \Application\Sonata\MediaBundle\Entity\Media
+     */
+    public function getFirstimage()
+    {
+        return $this->firstimage;
+    }
+
+    /**
+     * Set secondimage
+     *
+     * @param \Application\Sonata\MediaBundle\Entity\Media $secondimage
+     *
+     * @return ProjectPage
+     */
+    public function setSecondimage(\Application\Sonata\MediaBundle\Entity\Media $secondimage = null)
+    {
+        $this->secondimage = $secondimage;
+
+        return $this;
+    }
+
+    /**
+     * Get secondimage
+     *
+     * @return \Application\Sonata\MediaBundle\Entity\Media
+     */
+    public function getSecondimage()
+    {
+        return $this->secondimage;
+    }
+
+    /**
+     * Set thirdimage
+     *
+     * @param \Application\Sonata\MediaBundle\Entity\Media $thirdimage
+     *
+     * @return ProjectPage
+     */
+    public function setThirdimage(\Application\Sonata\MediaBundle\Entity\Media $thirdimage = null)
+    {
+        $this->thirdimage = $thirdimage;
+
+        return $this;
+    }
+
+    /**
+     * Get thirdimage
+     *
+     * @return \Application\Sonata\MediaBundle\Entity\Media
+     */
+    public function getThirdimage()
+    {
+        return $this->thirdimage;
+    }
+
+    /**
+     * Set forthimage
+     *
+     * @param \Application\Sonata\MediaBundle\Entity\Media $forthimage
+     *
+     * @return ProjectPage
+     */
+    public function setForthimage(\Application\Sonata\MediaBundle\Entity\Media $forthimage = null)
+    {
+        $this->forthimage = $forthimage;
+
+        return $this;
+    }
+
+    /**
+     * Get forthimage
+     *
+     * @return \Application\Sonata\MediaBundle\Entity\Media
+     */
+    public function getForthimage()
+    {
+        return $this->forthimage;
+    }
+
+    /**
+     * Set fifthimage
+     *
+     * @param \Application\Sonata\MediaBundle\Entity\Media $fifthimage
+     *
+     * @return ProjectPage
+     */
+    public function setFifthimage(\Application\Sonata\MediaBundle\Entity\Media $fifthimage = null)
+    {
+        $this->fifthimage = $fifthimage;
+
+        return $this;
+    }
+
+    /**
+     * Get fifthimage
+     *
+     * @return \Application\Sonata\MediaBundle\Entity\Media
+     */
+    public function getFifthimage()
+    {
+        return $this->fifthimage;
+    }
+}

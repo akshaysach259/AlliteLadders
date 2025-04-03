@@ -1,0 +1,5 @@
+<!--Static Slider-->
+<section>
+<div style="padding: 147px 0 0px;"> <img src="{{ asset('bundles/projectcms/img/extra/breadcrumb-1.jpg') }}"></div>
+</section>
+<!--Static Slider-->

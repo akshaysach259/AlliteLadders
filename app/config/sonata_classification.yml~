@@ -1,0 +1,16 @@
+# sonata_classification.yml
+
+sonata_classification:
+
+doctrine:
+    orm:
+        entity_managers:
+            default:
+                mappings:
+                    #ApplicationSonataClassificationBundle: ~
+                    SonataClassificationBundle: ~
+
+doctrine:
+    dbal:
+        types:
+            json:     Sonata\Doctrine\Types\JsonType

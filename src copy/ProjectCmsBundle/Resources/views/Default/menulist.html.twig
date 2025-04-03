@@ -1,0 +1,14 @@
+       <div class="col-md-3 pt-15">
+                            <div class="widget-wrap">
+                                <h2 class="widget-title"> <span class="light-font">Menu</span> <strong>List</strong> </h2>
+                                <div class="divider-full-1"></div>
+
+                          {% if mainMenu is defined and mainMenu|length>0 %}
+                                <ul class="cate-widget">
+			         {% for mainMenuResult in mainMenu %}
+                                    <li> <i class="fa fa-arrow-circle-o-right clr-txt"></i> <a href="{{ path('_page_article_detail', { 'urlAlias':mainMenuResult.pageUrl }) }}">{{mainMenuResult.pageTitle|upper}}</a> </li>
+                                 {% endfor %}  
+                                </ul>
+			   {% endif %}
+                            </div>
+                       </div>

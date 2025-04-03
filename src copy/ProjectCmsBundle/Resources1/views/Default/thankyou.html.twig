@@ -1,0 +1,27 @@
+{% extends 'ProjectCmsBundle::layout.html.twig' %}
+
+ {% block body %}
+
+<section class="sec-space-bottom">
+                <div class="container pt-50">
+                    <div class="row">
+                 	{{ render(controller('ProjectCmsBundle:Default:menulist')) }}
+                        <div class="col-md-9 pt-15">
+                            <div class="blog-single">       
+                                <div class="content">        
+                                    <div class="blog-media">
+                                        <h2 class="fsz-30"> <span class="light-font">{{ query|raw }}</span></h2>
+                                    </div>
+                                    <div class="caption">                                       
+                                    </div>   
+                                </div>
+                               
+                
+                            </div>
+                        </div>                        
+                    </div>
+                </div>                
+            </section>
+
+
+ {% endblock %}

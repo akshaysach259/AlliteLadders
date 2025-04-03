@@ -1,0 +1,55 @@
+{% extends 'ProjectCmsBundle::layout.html.twig' %}
+
+ {% block body %}
+
+
+<!--Company Section-->
+    <section class="company-section">
+    	<div class="auto-container">
+        	<!--Sec Title-->
+            <div class="sec-title">
+            	<h2>{% if result[0].projectName is defined %}{{ result[0].projectName|raw|upper }}{% endif %}</h2>
+                <div class="separator"></div>
+            </div>
+            <div class="row clearfix">
+            	
+                <!--Content Column-->
+                <div class="content-column col-md-9">
+                	<div class="inner-column">
+                        <div class="text">
+                        	{% if result[0].pageDescription is defined %}{{ result[0].pageDescription|raw }}{% endif %}
+                        </div>
+                  
+                    </div>
+                </div>
+                
+                <!--Founder Column-->
+                <div class="founder-column col-md-3 col-sm-12 col-xs-12">
+                	<div class="inner-column">
+                    	<div class="row">
+                       	
+                            <!--Founder Content-->
+                            <div >
+                            	<div class="inner-column">
+{% set imageType = 'jpeg' %}
+{% set imageTypeArry = result[0].image.contentType|split('/') %}
+{% set imageType = imageTypeArry[1] %}
+                                	<h3>Project Image</h3>
+                                    <div><img src="../../uploads/media/default/0001/01/thumb_{{result[0].image.id}}_default_td_300.{{imageType}}" alt="" /></div>
+                                   </div>
+                            </div>
+                            
+                        </div>
+                    </div>
+                </div>
+                
+            </div>
+        </div>
+    </section>
+
+    <!--End Company Section-->
+     
+
+
+
+ {% endblock %}

@@ -1,0 +1,5 @@
+# sonata_classification.yml
+doctrine:
+    dbal:
+        types:
+            json:     Sonata\Doctrine\Types\JsonType
