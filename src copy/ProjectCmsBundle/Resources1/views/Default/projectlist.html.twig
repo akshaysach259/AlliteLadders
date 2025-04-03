@@ -1,0 +1,58 @@
+{% extends 'ProjectCmsBundle::layout.html.twig' %}
+
+
+ {% block body %}
+
+<!--Commercial Projects Section-->
+    <section class="commercial-projects-section">
+    	<div class="auto-container">
+        	<div class="sec-title centered">
+            	<h2>{% if result is defined and result|length>0 %}{{result[0].projectcatId|upper}}{% endif %}</h2>
+                <div class="separator"></div>
+            </div>
+            
+            <div class="row clearfix">
+            	
+{% if result is defined and result|length>0 %}
+{% for queryResult in result %}
+
+{% set imageType = 'jpeg' %}
+{% set imageTypeArry = queryResult.image.contentType|split('/') %}
+{% set imageType = imageTypeArry[1] %}
+
+                <!--Project Block Two-->
+                <div class="project-block-two col-md-4 col-sm-6 col-xs-12">
+                    <div class="inner-box">
+                        <div class="image">
+                              {% if imageType=='x-shockwave-flash' %}
+    <object classid="clsid:D27CDB6E-AE6D-11cf-96B8-444553540000" codebase="http://download.macromedia.com/pub/shockwave/cabs/flash/swflash.cab#version=7,0,19,0" width="150" height="200">
+  <param name="movie" value="/web/uploads/media/default/0001/01/{{queryResult.image.providerReference}}" />
+  <param name="quality" value="high" />
+  <embed src="/web/uploads/media/default/0001/01/{{queryResult.image.providerReference}}" quality="high" pluginspage="http://www.macromedia.com/go/getflashplayer" type="application/x-shockwave-flash" width="150" height="200"></embed>
+</object>
+  				       {% else %}
+                            
+                            <img src="/web/uploads/media/default/0001/01/thumb_{{queryResult.image.id}}_default_td_600.{{imageType}}" alt="" />    
+                            {% endif %}
+                        </div>
+                        <div class="lower-content">
+                            <h2><a href="{{ path('_page_project_detail', { 'urlAlias':queryResult.pageUrl }) }}">{{queryResult.projectName|upper}}</a></h2>
+                            
+                        </div>
+                    </div>
+                </div>
+
+{% endfor %}
+{% endif %}
+
+             
+			</div>
+            
+        </div>
+    </section>
+    <!--End Commercial Projects Section-->
+
+
+
+
+ {% endblock %}

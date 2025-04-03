@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<!--[if IE 7]><html class="no-js ie7 oldie" lang="en-US"> <![endif]-->
+<!--[if IE 8]><html class="no-js ie8 oldie" lang="en-US"> <![endif]-->
+<!--[if gt IE 8]><!-->
+<html lang="en">
+    <head>
+
+{% block seo %}
+{{ sonata_seo_title() }}
+{{ sonata_seo_metadatas() }}
+{% endblock %}
+        <meta charset="utf-8">
+        <!--[if IE]><meta http-equiv="X-UA-Compatible" content="IE=edge"><![endif]-->
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <link rel="apple-touch-icon" sizes="144x144" href="{{ asset('bundles/projectcms/ico/apple-touch-icon-144-precomposed.png') }}">
+        <link rel="shortcut icon" href="{{ asset('bundles/projectcms/ico/favicon.ico') }}">
+
+
+        <link href="{{ asset('bundles/projectcms/css/plugin/font-awesome.min.css') }}" rel="stylesheet" type="text/css">  
+
+
+        <link href="{{ asset('bundles/projectcms/css/plugin/bootstrap.min.css') }}" rel="stylesheet" type="text/css">  
+        <link href="{{ asset('bundles/projectcms/css/plugin/bootstrap-select.min.css') }}" rel="stylesheet" type="text/css">   
+        <link href="{{ asset('bundles/projectcms/css/plugin/owl.carousel.css') }}" rel="stylesheet" type="text/css">
+        <link href="{{ asset('bundles/projectcms/css/plugin/animate.css') }}" rel="stylesheet" type="text/css"> 
+        <link href="{{ asset('bundles/projectcms/css/plugin/subscribe-better.css') }}" rel="stylesheet" type="text/css"> 
+
+        <link href="{{ asset('bundles/projectcms/css/theme.css') }}" rel="stylesheet" type="text/css">
+
+{#<link href="{{ asset('bundles/projectcms/dist/demo.css') }}" rel="stylesheet" type="text/css">#}
+{% set route = app.request.attributes.get('_route') %}
+	{% if route != '_page_product_detail' %}
+        <link href="{{ asset('bundles/projectcms/dist/simplelightbox.min.css') }}" rel="stylesheet" type="text/css">
+{% endif %}
+        <!--[if lt IE 9]>
+        <script src="{{ asset('bundles/projectcms/js/plugin/html5shiv.js') }}"></script>
+        <script src="{{ asset('bundles/projectcms/js/plugin/respond.js') }}"></script>
+        <![endif]-->   
+        
+        <!--Start of Tawk.to Script-->
+<script type="text/javascript">
+var Tawk_API=Tawk_API||{}, Tawk_LoadStart=new Date();
+(function(){
+var s1=document.createElement("script"),s0=document.getElementsByTagName("script")[0];
+s1.async=true;
+s1.src='https://embed.tawk.to/5c287bd37a79fc1bddf2adc6/default';
+s1.charset='UTF-8';
+s1.setAttribute('crossorigin','*');
+s0.parentNode.insertBefore(s1,s0);
+})();
+</script>
+<!--End of Tawk.to Script-->
+
+<!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-G59F9E3GEX"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'G-G59F9E3GEX');
+</script>
+        
+    </head>
+
+
+    <body id="home" class="wide">
+
+ {% block Header %}
+   {{ render(controller('ProjectCmsBundle:Default:header')) }}
+ {% endblock %}
+    <!--End Main Header -->
+ <!-- / Main Header Ends -->   
+
+    <!--Main Slider-->
+{% block Slider %}
+{% set route = app.request.attributes.get('_route') %}
+	{% if route == '_page_home' %}
+           {{ render(controller('ProjectCmsBundle:Default:slider')) }}
+        {% elseif route == '_page_article_detail' %}
+             {% set uriParam = app.request.attributes.get('_route_params') %}
+              {% set articleUrlAlias = uriParam['urlAlias'] %}
+                  	{% if articleUrlAlias == 'fabrication' %}
+                             {{ render(controller('ProjectCmsBundle:Default:fabricationslider')) }}
+                        {% else %}
+                             {{ include('ProjectCmsBundle:Default:staticSlider.html.twig') }}
+                        {% endif %}
+        {% else %}
+           {{ include('ProjectCmsBundle:Default:staticSlider.html.twig') }}
+        {% endif %}
+ {% endblock %} 
+    <!--End Main Slider-->
+
+	{% block body %}
+
+
+
+	<!-- Main Body part-->
+
+	{% endblock %}
+
+            <!-- / CONTENT AREA -->
+
+	<!--Footer Style Two-->
+	{% block Footer %}
+	{{ render(controller('ProjectCmsBundle:Default:footer')) }}
+	{% endblock %}
+
+        <script src="{{ asset('bundles/projectcms/js/plugin/jquery-2.2.4.min.js') }}"></script>   
+        <script src="{{ asset('bundles/projectcms/js/plugin/bootstrap.min.js') }}"></script>
+        <script src="{{ asset('bundles/projectcms/js/plugin/bootstrap-select.min.js') }}"></script>
+        <script src="{{ asset('bundles/projectcms/js/plugin/owl.carousel.min.js') }}"></script>
+        <script src="{{ asset('bundles/projectcms/js/plugin/jquery.plugin.min.js') }}"></script>
+        <script src="{{ asset('bundles/projectcms/js/plugin/jquery.countdown.js') }}"></script>
+        <script src="{{ asset('bundles/projectcms/js/plugin/jquery.subscribe-better.min.js') }}"></script>
+        <script src="{{ asset('bundles/projectcms/js/theme.js') }}"></script>
+
+{% set route = app.request.attributes.get('_route') %}
+	{% if route != '_page_product_detail' %}
+<script type="text/javascript" src="{{ asset('bundles/projectcms/dist/simple-lightbox.js') }}"></script>
+<script>
+	$(function(){
+		var $gallery = $('.organic-product a').simpleLightbox();
+
+		$gallery.on('show.simplelightbox', function(){
+			console.log('Requested for showing');
+		})
+		
+	});
+</script>
+{% endif %}
+
+    </body>
+</html>

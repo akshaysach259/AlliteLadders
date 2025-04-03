@@ -1,0 +1,64 @@
+{% extends 'ProjectCmsBundle::layout.html.twig' %}
+ {% block body %}
+
+<style>
+img {max-width:100%;}
+</style>
+
+
+            <!-- Naturix Goods Starts-->
+            <section class="naturix-goods sec-space light-bg">
+                <div class="container"> 
+                    <div class="title-wrap">
+                        <h2 class="section-title"> <span class="light-font">Our </span> <strong>Fabrication List<img src="{{ asset('bundles/projectcms/img/icons/logo-icon.png') }}" alt="" /></strong> </h2>
+                    </div>
+            
+                    <div class="tab-content organic-content row"> 
+                        <div id="naturix-tab-1" class="tab-pane fade active in"> 
+                            <div class="naturix-slider-1 dots-1"> 
+
+
+{% if result is defined and result|length>0 %}
+        <div class="item"> 
+{% for queryProductsResult in result %}
+
+{% set imageType = 'jpeg' %}
+{% set imageTypeArry = queryProductsResult.image.contentType|split('/') %}
+{% set imageType = imageTypeArry[1] %}
+
+            <div class="product-box"> 
+                <div class="product-media"> 
+                    <img class="prod-img" alt="" src="/web/uploads/media/default/0001/01/thumb_{{queryProductsResult.image.id}}_default_td_160.{{imageType}}" />     
+                 </div>                                           
+                <div class="product-caption"> 
+                    <h3 class="product-title">
+<a href="{{ path('_page_fabrication_detail', { 'urlAlias':queryProductsResult.pageUrl }) }}"> {#<span class="light-font"> organic </span>#}  <strong>{{queryProductsResult.fabricationName}}</strong></a>
+                    </h3>
+		<div class="price"> 
+		<strong class="clr-txt"><a href="{{ path('_page_fabrication_detail', { 'urlAlias':queryProductsResult.pageUrl }) }}" style="color:#7fba00">View More</a></strong>
+		</div>
+                </div>
+            </div>
+	{% if loop.index%2==0 and not loop.last %}
+        </div><div class="item"> 
+       {% endif %}
+
+	{% endfor %}
+         </div>
+	{% endif %}
+
+
+ 
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+            </section>
+            <!-- / Naturix Goods Ends -->
+
+            <!-- Naturix Quality Starts-->
+
+            <div class="container"> <div class="divider-full-1"></div> </div>
+
+     {% endblock %}

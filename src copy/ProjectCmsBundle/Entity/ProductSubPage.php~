@@ -1,0 +1,102 @@
+<?php
+
+namespace ProjectCmsBundle\Entity;
+use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
+use Doctrine\ORM\Mapping as ORM;
+
+/**
+ * ProductSubPage
+ *
+ * @ORM\Table(name="product_sub_page")
+ * @ORM\Entity(repositoryClass="ProjectCmsBundle\Repository\MainPageRepository")
+ */
+class ProductSubPage
+{
+    /**
+     * @var int
+     *
+     * @ORM\Column(name="id", type="integer")
+     * @ORM\Id
+     * @ORM\GeneratedValue(strategy="AUTO")
+     */
+    private $id;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="pageTitle", type="string", length=255)
+     */
+    private $pageTitle;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="pageUrl", type="string", length=255)
+     */
+    private $pageUrl;
+
+
+    /**
+     * @var ProjectCmsBundle\Entity\ProductMainPage
+     *
+     * @ORM\ManyToOne(targetEntity="ProjectCmsBundle\Entity\ProductMainPage")
+     * @ORM\JoinColumns({
+     *   @ORM\JoinColumn(name="product_mainpagecat_id", referencedColumnName="id")
+     * })
+     */
+    private $productmainpagecatId;
+ 
+
+    /**
+     * @var bool
+     *
+     * @ORM\Column(name="status", type="boolean", options={"default" = 0})
+     */
+    private $status;
+
+    /**
+     * @var int
+     *
+     * @ORM\Column(name="priority",nullable=true, type="integer",options={"default" = 0})
+     */
+    private $priority;
+      /**
+	* @ORM\ManyToOne(targetEntity="Application\Sonata\MediaBundle\Entity\Media")
+	*/
+    private $image;
+
+    /**
+     * @var \DateTime
+     *
+     * @ORM\Column(name="created", type="datetime")
+     */
+    private $created;
+
+    /**
+     * @var \DateTime
+     *
+     * @ORM\Column(name="updated", type="datetime")
+     */
+    private $updated;
+
+   /**
+    * To String
+    *
+    * @return string
+    */
+   public function __toString() {
+      return $this->getPageTitle()."(".$this->getProductmainpagecatId().")";
+   }
+
+    /**
+     * Get id
+     *
+     * @return integer
+     */
+    public function getId()
+    {
+        return $this->id;
+    }
+
+ 
+}

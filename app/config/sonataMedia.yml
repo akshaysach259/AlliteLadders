@@ -1,0 +1,132 @@
+#
+# more information can be found here http://sonata-project.org/bundles/media
+#
+sonata_media:
+    db_driver:       doctrine_orm # | doctrine_mongodb
+    default_context: default
+    contexts:
+        default:  # the default context is mandatory
+            download:
+                mode: http # X-Sendfile | http
+            providers:
+                - sonata.media.provider.file
+                # - sonata.media.provider.youtube
+                - sonata.media.provider.image
+                #- sonata.media.provider.imagecustom
+                #- sonata.media.provider.dailymotion
+                #- sonata.media.provider.youtube
+                #- sonata.media.provider.file
+                #- sonata.media.provider.vimeo
+
+            formats:
+                # small:  { width: 100, quality: 100}
+                td_600: { width: 600, quality: 90}
+                td_400: { width: 400, quality: 80}
+                td_300: { width: 300, quality: 80}
+                td_160: { width: 160, quality: 70}
+                td_70: { width: 70, quality: 70}
+
+        download:
+            providers:
+                - sonata.media.provider.image
+
+            formats:
+                td_600: { width: 600, quality: 90}
+                td_400: { width: 400, quality: 80}
+                td_300: { width: 300, quality: 80}
+                td_160: { width: 160, quality: 70}
+                td_70: { width: 70, quality: 70}
+
+        digitcommon:
+            providers:
+                - sonata.media.provider.image
+
+            formats:
+                td_600: { width: 600, quality: 80}
+                td_400: { width: 400, quality: 80}
+                td_300: { width: 300, quality: 80}
+                td_160: { width: 160, quality: 70}
+                td_70: { width: 70, quality: 70}
+
+        product:
+            providers:
+                - sonata.media.provider.image
+
+            formats:
+                td_600: { width: 600, quality: 80}
+                td_400: { width: 400, quality: 80}
+                td_300: { width: 300, quality: 80}
+                td_160: { width: 160, quality: 70}
+                td_70: { width: 70, quality: 70}
+
+        video:
+            providers:
+                - sonata.media.provider.file
+                - sonata.media.provider.youtube
+
+            formats:
+                td_600: { width: 600, quality: 80}
+                td_400: { width: 400, quality: 80}
+
+    cdn:
+        server:
+#Before thumb optimization
+#           path:   http://d3da1vcll2f3a9.cloudfront.net 
+#After thumb optimization
+             path:   /web/uploads/media
+#            path:   /uploads/media
+#            path:   http://s3-ap-southeast-1.amazonaws.com/dgitvideos/
+
+    filesystem:
+        # define where the uploaded file will be stored
+        local:
+            directory:  %kernel.root_dir%/../web/uploads/media
+            create:     true
+  
+
+    providers:
+
+        file:
+            resizer:    false
+#            filesystem: sonata.media.filesystem.local
+            cdn:        sonata.media.cdn.server
+            generator:  sonata.media.generator.default
+            thumbnail:  sonata.media.thumbnail.format
+            allowed_extensions: ['pdf', 'txt', 'rtf', 'doc', 'docx', 'xls', 'xlsx', 'ppt', 'pttx', 'odt', 'odg', 'odp', 'ods', 'odc', 'odf', 'odb', 'csv', 'xml','mp4','swf']
+            allowed_mime_types: ['application/pdf', 'application/x-pdf', 'application/rtf', 'text/html', 'text/rtf', 'text/plain','video/mp4','application/x-shockwave-flash','application/vnd.adobe.flash.movie']
+
+
+        image:
+            #resizer:    sonata.media.resizer.simple # sonata.media.resizer.square
+#            filesystem: sonata.media.filesystem.local
+            cdn:        sonata.media.cdn.server
+            generator:  sonata.media.generator.default
+            allowed_extensions: ['jpg', 'jpeg', 'png', 'gif','swf']
+            allowed_mime_types: ['image/jpeg','image/gif','image/png','image/bmp','application/vnd.adobe.flash.movie','application/x-shockwave-flash']
+
+            #thumbnail:  sonata.media.thumbnail.format
+
+        youtube:
+            #resizer:    sonata.media.resizer.simple
+#            filesystem: sonata.media.filesystem.local
+            cdn:        sonata.media.cdn.server
+            generator:  sonata.media.generator.default
+            #thumbnail:  sonata.media.thumbnail.format  
+            
+    pixlr:
+        enabled: false
+        referrer: Demo - Sonata Project
+
+    resizer:
+        simple:
+
+# Enable Doctrine to map the provided entities
+doctrine:
+    orm:
+        entity_managers:
+            default:
+                mappings:
+                    ApplicationSonataMediaBundle: ~
+                    #SonataMediaBundle: ~
+
+

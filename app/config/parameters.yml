@@ -1,0 +1,12 @@
+# This file is auto-generated during the composer install
+parameters:
+    database_host: 127.0.0.1
+    database_port: null
+    database_name: alliedtr_alliedladder
+    database_user: alliedtr_allied
+    database_password: allied@123321
+    mailer_transport: smtp
+    mailer_host: 127.0.0.1
+    mailer_user: null
+    mailer_password: null
+    secret: d759e4c3208f3d2f72232037576ce5d2116124fc

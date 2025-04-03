@@ -1,0 +1,47 @@
+{% extends 'ProjectCmsBundle::layout.html.twig' %}
+{% block body %}
+
+<!--Commercial Projects Section-->
+    <section class="commercial-projects-section">
+    	<div class="auto-container">
+        	<div class="sec-title centered">
+            	<h2>Gallery</h2>
+                <div class="separator"></div>
+            </div>
+            
+<div class="row clearfix">            	
+{% if result is defined and result|length>0 %}
+{% for querytoolsResult in result %}
+
+                <!--Project Block Two-->
+                <div class="project-block-two col-md-4 col-sm-6 col-xs-12">
+                    <div class="inner-box">
+                        <div class="image">
+                            <iframe id="ytvideoDetail" width="916" height="545" src="https://www.youtube.com/embed/{{querytoolsResult.youtubeCode}}?rel=0&autoplay=0&enablejsapi=1&playerapiid=ytvideoDetail&version=3" frameborder="0" allowfullscreen></iframe>
+                            <div class="overlay-box">
+                                <div class="content">
+                                    <a href="" class="search-btn lightbox-image" data-fancybox="images" data-caption=""><span class="flaticon-plus-zoom"></span></a>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="lower-content">
+                            <h2><a href="#">{{querytoolsResult.pageTitle|upper}}</a></h2>
+                            
+                        </div>
+                    </div>
+                </div>
+
+{% endfor %}
+{% endif %}
+
+             
+			</div>
+            
+        </div>
+    </section>
+    <!--End Commercial Projects Section-->
+
+
+
+
+ {% endblock %}

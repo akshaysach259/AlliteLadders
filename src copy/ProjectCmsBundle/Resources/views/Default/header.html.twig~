@@ -1,0 +1,86 @@
+      {#  <div id="loading">
+            <div class="loader">
+                <div class="dot"></div>
+                <div class="dot"></div>
+                <div class="dot"></div>
+                <div class="dot"></div>
+                <div class="dot"></div>
+            </div>
+        </div>#}
+
+
+        <!-- WRAPPER -->
+        <main class="wrapper home-wrap"> 
+            <!-- CONTENT AREA -->
+
+            <!-- Main Header Start -->
+            <header class="main-header">                  
+                <div class="container-fluid rel-div">
+                    <div class="col-lg-4 col-sm-8">
+                        <div class="main-logo">
+                            <a href="index.html"> <img alt="" src="{{ asset('bundles/projectcms/img/logo/main-logo.png') }}" />  </a>
+                            <span class="medium-font">ORGANIC STORE</span>
+                    </div>
+                        </div>
+
+                    <div class="col-lg-8 responsive-menu">  
+                        <div class="responsive-toggle fa fa-bars"> </div>
+                        <nav class="fix-navbar" id="primary-navigation">            
+                            <ul class="primary-navbar">                                                
+                                <li class="dropdown active">
+                                <a href="/" class="dropdown-toggle" role="button" aria-haspopup="true" >Home</a>                                          
+                                </li> 
+                             {% if mainMenu is defined and mainMenu|length>0 %}
+			{% for mainMenuResult in mainMenu %}
+
+                                <li class="dropdown">
+                                    <a href="{{ path('_page_article_detail', { 'urlAlias':mainMenuResult.pageUrl }) }}" class="dropdown-toggle" role="button" aria-haspopup="true" >{{mainMenuResult.pageTitle|upper}}</a>
+
+				{% if mainMenuResult.pageUrl=='products' %}
+					{% if mainProductMenu is defined and mainProductMenu|length>0 %}
+				       <ul class="dropdown-menu">
+					 {% for mainProductMenu in mainProductMenu %}
+					     <li class="dropdown"><a href="{{ path('_page_article_detail', { 'urlAlias':mainProductMenu.pageUrl }) }}">{{mainProductMenu.pageTitle|upper}}</a></li>
+					 {% endfor %}
+				       </ul>
+				       {% endif %}
+				{% else %}
+
+			          {% if submenu[mainMenuResult.id] is defined and submenu[mainMenuResult.id]|length>0 %}
+
+                                    <ul class="dropdown-menu"> 
+			              {% for submenuResult in submenu[mainMenuResult.id] %}
+                                        <li class="dropdown">
+                                            <a href="{{ path('_page_article_detail', { 'urlAlias':submenuResult.pageUrl }) }}" class="dropdown-toggle" role="button" aria-haspopup="true" >{{submenuResult.pageTitle|upper}}</a>
+			               {% if subthirdmenu[submenuResult.id] is defined and subthirdmenu[submenuResult.id]|length>0 %}
+<ul class="dropdown-menu"> 
+{% for subthirdmenus in subthirdmenu[submenuResult.id] %} 
+<li class="dropdown">
+<a href="{{ path('_page_article_detail', { 'urlAlias':subthirdmenus.pageUrl }) }}" class="dropdown-toggle" role="button" aria-haspopup="true" >{{subthirdmenus.pageTitle|upper}}</a>
+</li> 
+{% endfor %}
+</ul>
+				       {% endif %}
+
+                                        </li> 
+                                     {% endfor %}
+                                    </ul>
+			  {% endif %}
+
+			{% endif %}
+
+
+                                </li>
+                        {% endfor %}
+			{% endif %}
+
+                            </ul> 
+                         
+                        </nav>
+                    </div>
+
+
+                </div>  
+            </header>
+
+

@@ -1,0 +1,134 @@
+<!-- Acme/DemoBundle/Resources/config/admin.xml -->
+<container xmlns="http://symfony.com/schema/dic/services"
+           xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+           xsi:schemaLocation="http://symfony.com/schema/dic/services/services-1.0.xsd">
+
+    <!-- Other's Bundle Services Start -->
+    <services>
+		
+        <service id="sonata.admin.mainpage" class="AdminBundle\Admin\MainPageAdmin">
+            <tag name="sonata.admin" manager_type="orm" group="Content" label="MainPage"/>
+            <argument />
+            <argument>ProjectCmsBundle\Entity\MainPage</argument>
+            <argument />
+        </service>
+
+        <service id="sonata.admin.subpage" class="AdminBundle\Admin\SubPageAdmin">
+            <tag name="sonata.admin" manager_type="orm" group="Content" label="SubPage"/>
+            <argument />
+            <argument>ProjectCmsBundle\Entity\SubPage</argument>
+            <argument />
+        </service>
+
+        <service id="sonata.admin.machinepage" class="AdminBundle\Admin\MachinePageAdmin">
+            <tag name="sonata.admin" manager_type="orm" group="Content" label="ClientList"/>
+            <argument />
+            <argument>ProjectCmsBundle\Entity\MachinePage</argument>
+            <argument />
+        </service>
+
+
+        <service id="sonata.admin.videopage" class="AdminBundle\Admin\VideosPageAdmin">
+            <tag name="sonata.admin" manager_type="orm" group="Content" label="VideoPage"/>
+            <argument />
+            <argument>ProjectCmsBundle\Entity\VideosPage</argument>
+            <argument />
+        </service>
+
+        <service id="sonata.admin.partnerpage" class="AdminBundle\Admin\PartnerPageAdmin">
+            <tag name="sonata.admin" manager_type="orm" group="Content" label="PartnerPage"/>
+            <argument />
+            <argument>ProjectCmsBundle\Entity\PartnerPage</argument>
+            <argument />
+        </service>
+
+        <service id="sonata.admin.testimonial" class="AdminBundle\Admin\TestimonialPageAdmin">
+            <tag name="sonata.admin" manager_type="orm" group="Content" label="TestimonialPage"/>
+            <argument />
+            <argument>ProjectCmsBundle\Entity\TestimonialPage</argument>
+            <argument />
+        </service>
+
+        <service id="sonata.admin.gallerypage" class="AdminBundle\Admin\GalleryPageAdmin">
+            <tag name="sonata.admin" manager_type="orm" group="Content" label="GalleryPage"/>
+            <argument />
+            <argument>ProjectCmsBundle\Entity\GalleryPage</argument>
+            <argument />
+        </service>
+
+        <service id="sonata.admin.thirdlevelpage" class="AdminBundle\Admin\SubThirdPageAdmin">
+            <tag name="sonata.admin" manager_type="orm" group="Content" label="Thirdlevelpage"/>
+            <argument />
+            <argument>ProjectCmsBundle\Entity\SubThirdPage</argument>
+            <argument />
+        </service>
+
+        <service id="sonata.admin.subproductcat" class="AdminBundle\Admin\ProductSubPageAdmin">
+            <tag name="sonata.admin" manager_type="orm" group="Content" label="Product Sub Category"/>
+            <argument />
+            <argument>ProjectCmsBundle\Entity\ProductSubPage</argument>
+            <argument />
+        </service>
+
+        <service id="sonata.admin.productcat" class="AdminBundle\Admin\ProductMainPageAdmin">
+            <tag name="sonata.admin" manager_type="orm" group="Content" label="ProductMainCat"/>
+            <argument />
+            <argument>ProjectCmsBundle\Entity\ProductMainPage</argument>
+            <argument />
+        </service>
+        
+
+        <service id="sonata.admin.products" class="AdminBundle\Admin\ProductPageAdmin">
+            <tag name="sonata.admin" manager_type="orm" group="Content" label="Products"/>
+            <argument />
+            <argument>ProjectCmsBundle\Entity\ProductPage</argument>
+            <argument />
+        </service>
+
+        <service id="sonata.admin.homepage" class="AdminBundle\Admin\HomePageAdmin">
+            <tag name="sonata.admin" manager_type="orm" group="Content" label="homePage"/>
+            <argument />
+            <argument>ProjectCmsBundle\Entity\HomePage</argument>
+            <argument />
+        </service>
+
+        <service id="sonata.admin.project" class="AdminBundle\Admin\ProjectMainPageAdmin">
+            <tag name="sonata.admin" manager_type="orm" group="Content" label="Project Category"/>
+            <argument />
+            <argument>ProjectCmsBundle\Entity\ProjectMainPage</argument>
+            <argument />
+        </service>
+
+        <service id="sonata.admin.projectlist" class="AdminBundle\Admin\ProjectPageAdmin">
+            <tag name="sonata.admin" manager_type="orm" group="Content" label="Projects"/>
+            <argument />
+            <argument>ProjectCmsBundle\Entity\ProjectPage</argument>
+            <argument />
+        </service>
+        <service id="sonata.admin.blogs" class="AdminBundle\Admin\BlogPageAdmin">
+            <tag name="sonata.admin" manager_type="orm" group="Content" label="Blogs"/>
+            <argument />
+            <argument>ProjectCmsBundle\Entity\BlogPage</argument>
+            <argument />
+        </service>
+		
+        <service id="sonata.admin.enquiry" class="AdminBundle\Admin\EnquiryPageAdmin">
+            <tag name="sonata.admin" manager_type="orm" group="Content" label="Product Enquiry"/>
+            <argument />
+            <argument>ProjectCmsBundle\Entity\EnquiryPage</argument>
+            <argument />
+        </service>
+    <service id="sonata.admin.fabrication" class="AdminBundle\Admin\MsfabricationPageAdmin">
+            <tag name="sonata.admin" manager_type="orm" group="Content" label="Fabrication Category"/>
+            <argument />
+            <argument>ProjectCmsBundle\Entity\MsfabricationPage</argument>
+            <argument />
+        </service>
+    <service id="sonata.admin.fabricationdetail" class="AdminBundle\Admin\MsfabricationPageDetailAdmin">
+            <tag name="sonata.admin" manager_type="orm" group="Content" label="Fabrication Detail Page"/>
+            <argument />
+            <argument>ProjectCmsBundle\Entity\MsfabricationPageDetail</argument>
+            <argument />
+        </service>
+    </services>
+</container>

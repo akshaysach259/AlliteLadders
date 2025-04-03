@@ -1,0 +1,114 @@
+{% extends 'ProjectCmsBundle::layout.html.twig' %}
+
+
+ {% block body %}
+
+
+<div class="row" style="margin-right: 6px;margin-left: 27px;">
+                        <div class="col-md-3 pt-15">
+                            <div class="widget-wrap">
+                                <h2 class="widget-title"> <span class="light-font">Refine by</span> <strong>category</strong> </h2>
+                                <div class="divider-full-1"></div>
+                          {% if productquery is defined and productquery|length>0 %}
+                                <ul class="cate-widget">
+			         {% for mainProductMenu in productquery %}
+                                 <li> <i class="fa fa-arrow-circle-o-right clr-txt"></i> <a href="{{ path('_page_article_detail', { 'urlAlias':mainProductMenu.pageUrl }) }}">{{mainProductMenu.pageTitle}}</a> </li>
+                                 {% endfor %}
+				</ul>
+                         {% endif %}
+                             </div>
+
+                      
+                        </div>
+
+                        <div class="col-md-9">
+                            <div class="result-bar block-inline">
+                                <h4 class="result-txt">Category:<b>{{productCatName}}</b> </h4>
+                               {# <ul class="view-tabs">
+                                    <li class="">
+                                        <a href="#grid-view" data-toggle="tab">                                                    
+                                            <i class="fa fa-th"></i>
+                                        </a>
+                                    </li>
+                                    <li class="active">
+                                        <a href="#list-view" data-toggle="tab">
+                                            <i class="fa fa-th-list"></i>
+                                        </a>
+                                    </li>
+                                </ul>#}
+                            </div>
+             
+
+                                <div id="list-view" class="tab-pane fade active in" role="tabpanel">
+                                    <div class="row"> 
+
+				{% if result is defined and result|length>0 %}
+				{% for querytoolsResult in result %}
+
+				{% set imageType = 'jpeg' %}
+				{% set imageTypeArry = querytoolsResult.image.contentType|split('/') %}
+				{% set imageType = imageTypeArry[1] %}
+
+
+                                        <div class="col-sm-12"> 
+                                            <div class="deal-item list-view">
+                                               {# <div class="deal-icons">                                         
+                                                    <a href="#" class="fa fa-heart"></a>
+                                                    <a href="#" class="fa fa-shopping-basket"></a>
+                                                    <a href="#product-preview" data-toggle="modal" class="fa fa-expand"></a>                                      
+                                                </div>#}
+                                                <div class="deal-content">
+                                                 
+                                                    <div class="deal-text">
+                                                        <h4 class="sub-title"> {{querytoolsResult.productName|upper}} </h4>
+                                                        <h2 class="fsz-30 pb-15"> <a href="{{ path('_page_product_detail', { 'urlAlias':querytoolsResult.pageUrl }) }}"> <span class="light-font">{{querytoolsResult.productName|upper}} </span> <strong></strong> </a> </h2>
+                                                        <p>{{querytoolsResult.pageDescription|truncate(150)|raw}}</p>
+                                                        <div class="price pt-15"> 
+							<div class="text-left">
+							<span class="prod-tag tag-1"> <a href="{{ path('_page_product_detail', { 'urlAlias':querytoolsResult.pageUrl }) }}"> View</a></span> 
+							</div>
+                                                           </div>
+                                                    </div>
+                                                    <div class="img"> <img alt="" src="../uploads/media/default/0001/01/thumb_{{querytoolsResult.image.id}}_default_td_600.{{imageType}}"> </div>
+                                                </div>
+                                            </div>
+                                        </div>
+{% endfor %}
+{% endif %}
+
+
+
+
+                                    </div>
+
+                                    <div class="rel-div pt-50">
+                                        <div class="divider-full-1"></div>
+                                        {#<div class="nav-page">
+                                            <a href="#" class="fa fa-long-arrow-left left"></a> 
+                                            <a href="#" class="fa fa-long-arrow-right right"></a> 
+                                        </div>#}
+                                    </div>                            
+
+                                  {#  <div class="pagination-wrap">
+                                        <ul class="pagintn">                                  
+                                            <li><a href="#">01</a></li>
+                                            <li><a href="#">02</a></li>
+                                            <li><a href="#">03</a></li>
+                                            <li><a href="#">04</a></li>
+                                            <li><a href="#">05</a></li>
+                                            <li><a href="#">...</a></li>
+                                            <li><a href="#">15</a></li>                                    
+                                        </ul>
+                                    </div>#}
+
+
+
+
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+
+
+ {% endblock %}

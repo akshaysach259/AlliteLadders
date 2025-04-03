@@ -1,0 +1,54 @@
+{% extends 'ProjectCmsBundle::layout.html.twig' %}
+
+
+ {% block body %}
+
+<!--Commercial Projects Section-->
+    <section class="commercial-projects-section">
+    	<div class="auto-container">
+        	<div class="sec-title centered">
+            	<h2>Gallery</h2>
+                <div class="separator"></div>
+            </div>
+            
+            <div class="row clearfix">
+            	
+{% if result is defined and result|length>0 %}
+{% for querytoolsResult in result %}
+
+{% set imageType = 'jpeg' %}
+{% set imageTypeArry = querytoolsResult.image.contentType|split('/') %}
+{% set imageType = imageTypeArry[1] %}
+
+                <!--Project Block Two-->
+                <div class="project-block-two col-md-4 col-sm-6 col-xs-12">
+                    <div class="inner-box">
+                        <div class="image">
+                            <img src="../uploads/media/default/0001/01/thumb_{{querytoolsResult.image.id}}_default_td_600.{{imageType}}" alt="" />
+                            <div class="overlay-box">
+                                <div class="content">
+                                    <a href="../uploads/media/default/0001/01/thumb_{{querytoolsResult.image.id}}_default_td_300.{{imageType}}" class="search-btn lightbox-image" data-fancybox="images" data-caption=""><span class="flaticon-plus-zoom"></span></a>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="lower-content">
+                            <h2><a href="#">{{querytoolsResult.GalleryPageTitle|upper}}</a></h2>
+                            
+                        </div>
+                    </div>
+                </div>
+
+{% endfor %}
+{% endif %}
+
+             
+			</div>
+            
+        </div>
+    </section>
+    <!--End Commercial Projects Section-->
+
+
+
+
+ {% endblock %}

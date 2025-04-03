@@ -1,0 +1,11 @@
+services:
+#    admin.example:
+#        class: AdminBundle\Example
+#        arguments: ["@service_id", "plain_value", "%parameter%"]
+
+services:
+    cms_admin.admin.mainpage:
+        class: AdminBundle\Admin\MainPageAdmin
+        arguments: [~, ProjectCmsBundle\Entity\MainPage, SonataAdminBundle:CRUD]
+        tags:
+            - {name: sonata.admin, manager_type: orm, group: admin, label: Content}
